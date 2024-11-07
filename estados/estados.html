@@ -21,38 +21,47 @@
                 <h1>Selecione o estado</h1>
                 <select id="estado">
                     <option value="">Selecione o estado</option>
-                    <!-- Adicione as opções de estados aqui -->
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas </option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espírito Santo</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SP">São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
                 </select>
                 <button type="button" id="submit">Enviar</button>
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // URL da API do IBGE para listar estados
+            const url = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
+
+            // Carregar os estados no <select>
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function(data) {
+                    const estadoSelect = $('#estado');
+                    // Ordenar os estados por nome
+                    const estadosOrdenados = data.sort((a, b) => a.nome.localeCompare(b.nome));
+
+                    // Adicionar cada estado como <option>
+                    estadosOrdenados.forEach(estado => {
+                        estadoSelect.append(`<option value="${estado.sigla}">${estado.nome}</option>`);
+                    });
+                },
+                error: function() {
+                    alert('Erro ao carregar os estados. Tente novamente mais tarde.');
+                }
+            });
+
+            // Redirecionar para a página de municípios
+            $('#submit').click(function() {
+                const estado = $('#estado').val();
+                if (estado) {
+                    window.location.href = `municipios.html?estado=${estado}`;
+                } else {
+                    alert('Por favor, selecione um estado.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
