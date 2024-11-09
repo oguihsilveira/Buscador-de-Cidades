@@ -14,7 +14,7 @@
 
 -----------------------------------------------| Observações
 
-//Recursos utilizados: HTML, CSS e Ajax.
+//Recursos utilizados: HTML, CSS, JavaScript e Ajax.
 //Pasta assets: Há essa pasta, chamada "assets", contendo todas as imagens utilizadas no projeto.
 //Comando no terminal: start ./home/home.html
 
