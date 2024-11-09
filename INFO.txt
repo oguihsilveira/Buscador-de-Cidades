@@ -1,0 +1,26 @@
+-----------------------------------------------| Declarações
+
+//Olá, mundo! Me chamo Guilherme Henrique e este arquivo contém as instruções para iniciar as páginas HTML.
+
+//Para iniciar, insira no terminal "start ./home/home.html". Assim, você será encaminhado para a Home em seu navegador. 
+
+//Essa página Home possui dois links através de botões no centro da página: GitHub e Instagram (minhas redes pessoais, caso queiram olhar)
+
+//Também, na página Home, há uma barra de navegação contendo a aba "Consulta de Estados", onde a brincadeira vai acontecer. Clique nela.
+
+//Após clicar, será encaminhado para a página "estados.html", onde poderá selecionar o estado de sua preferência.
+
+//Com o estado selecionado, clique em "Enviar" e voilà! Você foi encaminhado para a página "municipios.html", onde deverão aparecer todos os municípios do estado que você selecionou anteriormente. 
+
+-----------------------------------------------| Observações
+
+//Recursos utilizados: HTML, CSS e Ajax.
+//Pasta assets: Há essa pasta, chamada "assets", contendo todas as imagens utilizadas no projeto.
+//Comando no terminal: start ./home/home.html
+
+-----------------------------------------------| Agradecimentos e Redes
+
+//Obrigado por estar visualizando este modelo simples de páginas Web. Caso queira me conhecer um pouco mais, minhas redes estão logo abaixo:
+
+//GitHub: https://github.com/oguihsilveira/
+//Instagram: https://www.instagram.com/rickdev95_

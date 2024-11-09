@@ -4,6 +4,44 @@
     <link rel="stylesheet" href="estados.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Roboto+Slab:wght@300;400&display=swap">
 </head>
+    <!-- onde a brincandeira começa -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Os negocio do ajax -->
+    <script>
+        $(document).ready(function() {
+            // url do ibge
+            const url = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
+
+            // estados no select
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function(data) {
+                    const estadoSelect = $('#estado');
+                    const estadosOrdenados = data.sort((a, b) => a.nome.localeCompare(b.nome)); //ordem alfabetica
+
+                    // estados no select
+                    estadosOrdenados.forEach(estado => {
+                        estadoSelect.append(`<option value="${estado.sigla}">${estado.nome}</option>`);
+                    });
+                },
+                error: function() {
+                    alert('Erro ao carregar os estados. Tente novamente mais tarde.');
+                }
+            });
+
+            // faz um window.loc.href pra mudar a pagina
+            $('#submit').click(function () {
+                const estado = $('#estado').val();
+                if (estado) {
+                    window.location.href = `../municipios/municipios.html?estado=${estado}`;
+                } else {
+                    alert('Por favor, selecione um estado.');
+                }
+            });
+        });
+    </script>
+
 <body>
     <div class="banner">
         <!-- barra de navegação -->
@@ -15,7 +53,7 @@
             </ul>
         </div>
 
-        <!-- Nova div para o seletor de estados -->
+        <!-- div caixa branca para slecionar os estados -->
         <div class="search-container">
             <div class="search-box">
                 <h1>Selecione o estado</h1>
@@ -27,41 +65,6 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // URL da API do IBGE para listar estados
-            const url = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
-
-            // Carregar os estados no <select>
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function(data) {
-                    const estadoSelect = $('#estado');
-                    // Ordenar os estados por nome
-                    const estadosOrdenados = data.sort((a, b) => a.nome.localeCompare(b.nome));
-
-                    // Adicionar cada estado como <option>
-                    estadosOrdenados.forEach(estado => {
-                        estadoSelect.append(`<option value="${estado.sigla}">${estado.nome}</option>`);
-                    });
-                },
-                error: function() {
-                    alert('Erro ao carregar os estados. Tente novamente mais tarde.');
-                }
-            });
-
-            // Redirecionar para a página de municípios
-            $('#submit').click(function() {
-                const estado = $('#estado').val();
-                if (estado) {
-                    window.location.href = `municipios.html?estado=${estado}`;
-                } else {
-                    alert('Por favor, selecione um estado.');
-                }
-            });
-        });
-    </script>
+    
 </body>
 </html>

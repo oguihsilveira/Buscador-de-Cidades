@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+#tabela-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+#tabela-container::-webkit-scrollbar-track {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#tabela-container::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #d9d9d9;
+    min-height: 50px;
+    margin-right: 2px;
+}
+
+.banner {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(34, 48, 89, 0.7), rgba(0, 0, 0, 0.8)), url(../assets/background.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.navbar {
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    width: 300px;
+    cursor: pointer;
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px 0 20px;
+    position: relative;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.navbar ul li::after {
+    content: '';
+    height: 2px;
+    width: 0;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #007bff, #00c4ff);
+    position: absolute;
+    left: 0;
+    bottom: -2;
+    transition: 0.3s;
+}
+
+.navbar ul li:hover::after {
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+    z-index: 5;
+    margin-top: 20px;
+}
+
+.content h1 {
+    font-size: 36px;
+    margin-top: 70px;
+    font-family: 'League Spartan';
+}
+
+.content p {
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+    font-family: 'Roboto Slab', serif;
+}
+
+button {
+    width: 180px;
+    padding: 12px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #007bff;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: border-color 0.5s;
+}
+
+button a {
+    text-decoration: none;
+    color: #fff;
+}
+
+button span {
+    background: linear-gradient(90deg, #007bff, #00c4ff);
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: width 0.5s;
+}
+
+button:hover span {
+    width: 100%;
+}
+
+button:hover {
+    border: none;
+    color: #fff;
+}
+
+#tabela-container {
+    width: 50%;
+    margin: 0 auto;
+    max-height: 350px;
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding-right: 2px;
+    z-index: 0;
+}
+
+#tabela-municipios {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#tabela-municipios th, #tabela-municipios td {
+    padding: 10px;
+    text-align: left;
+    font-size: 12px;
+}
+
+#tabela-municipios td {
+    border-bottom: none;
+}
+
+#tabela-municipios th {
+    background-color: #007bff;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px;
+    font-size: 14px;
+}
+
+#tabela-municipios tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#tabela-municipios tbody tr:hover {
+    background-color: #e6f7ff;
+    transition: background-color 0.3s ease;
+}
+
+.content h1 span {
+    color: #00c4ff;
+    font-weight: bold;
+}

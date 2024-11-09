@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Municípios do Estado</title>
+        <link rel="stylesheet" href="./municipios.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Roboto+Slab:wght@300;400&display=swap">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="banner">
+            <!-- Barra de navegação -->
+            <div class="navbar">
+                <img src="../assets/logo.png" class="logo">
+                <ul>
+                    <li><a href="../home/home.html">Home</a></li>
+                    <li><a href="../estados/estados.html">Consulta de Estados</a></li>
+                </ul>
+            </div>
+
+            <!-- Conteúdo principal -->
+            <div class="content">
+                <h1 class="titulo">Municípios do Estado <span id="nome-estado"></span></h1>
+                <br>
+                <div id="tabela-container">
+                    <table id="tabela-municipios">
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th>Nome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- onde os municípios aparecem -->
+                        </tbody>
+                    </table>
+                </div>
+            
+                <script>
+                    $(document).ready(function () {
+                        const params = new URLSearchParams(window.location.search);
+                        const estado = params.get('estado');
+            
+                        if (!estado) {
+                            alert('Estado não especificado!');
+                            window.location.href = '../estados/estados.html';
+                            return;
+                        }
+
+                        $('#nome-estado').text(estado);
+            
+                        const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`;
+            
+                        $.ajax({
+                            url: url,
+                            method: 'GET',
+                            success: function (data) {
+                                const tabelaBody = $('#tabela-municipios tbody');
+                                tabelaBody.empty();
+            
+                                // ordem alfabética aqui também
+                                const municipiosOrdenados = data.sort((a, b) => a.nome.localeCompare(b.nome));
+            
+                                // municípios enumerados
+                                municipiosOrdenados.forEach((municipio, index) => {
+                                    tabelaBody.append(` 
+                                        <tr>
+                                            <td>${index + 1}</td>
+                                            <td>${municipio.nome}</td>
+                                        </tr>
+                                    `);
+                                });
+                            },
+                            error: function () {
+                                alert('Erro ao carregar os municípios. Tente novamente mais tarde.');
+                            }
+                        });
+                    });
+                </script>
+            </div>        
+    </body>
+</html>
